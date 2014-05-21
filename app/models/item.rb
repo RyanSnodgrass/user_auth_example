@@ -13,8 +13,9 @@ class Item < ActiveRecord::Base
 
 	def set_attributes_from_etsy
 		etsy_data = get_etsy_data
-		self[:name] = etsy_data["results"][0]["title"]
-		self[:description] = etsy_data["results"][0]["description"]
+		listing = etsy_data["results"][0]
+		self[:name] = listing["title"]
+		self[:description] = listing["description"]
 		self.save
 	end
 
