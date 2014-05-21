@@ -1,22 +1,23 @@
 class Item < ActiveRecord::Base
 	belongs_to :wishlist
+	before_create :get_etsy_id
+	after_create :set_attributes_from_etsy
 
-	after_create :get_etsy_id
 	
 	def get_etsy_id
 		string = self.etsy_url
 		regex = /\d+/
 		numbers = string.scan(regex)
 		self[:etsy_id] = numbers[0]
-		self.save #save in the DB
+
 	end
 
 	def set_attributes_from_etsy
 		etsy_data = get_etsy_data
-		listing = etsy_data["results"][0]
+		listing = etsy_data["results"][0].to_i
 		self[:name] = listing["title"]
 		self[:description] = listing["description"]
-		self.save
+
 	end
 
 	def get_etsy_data
