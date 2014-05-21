@@ -11,14 +11,9 @@ class Item < ActiveRecord::Base
 		self.save #save in the DB
 	end
 
-	def set_name_from_etsy
+	def set_attributes_from_etsy
 		etsy_data = get_etsy_data
 		self[:name] = etsy_data["results"][0]["title"]
-		self.save
-	end
-
-	def set_description_from_etsy
-		etsy_data = get_etsy_data
 		self[:description] = etsy_data["results"][0]["description"]
 		self.save
 	end
