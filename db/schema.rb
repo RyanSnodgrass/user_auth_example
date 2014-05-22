@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140521134617) do
+ActiveRecord::Schema.define(version: 20140521215613) do
 
   create_table "items", force: true do |t|
     t.string   "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20140521134617) do
     t.integer  "wishlist_id"
     t.string   "etsy_url"
     t.string   "etsy_id"
+    t.integer  "price"
   end
 
   create_table "users", force: true do |t|
