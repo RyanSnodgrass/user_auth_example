@@ -2,7 +2,8 @@ class ItemsController < ApplicationController
 	def show
 		@item = Item.find(params[:id])
 		response = HTTParty.get("https://openapi.etsy.com/v2/listings/#{@item.etsy_id.to_i}/images?api_key=#{Rails.application.secrets.etsy_api_key}")
-
+		response_2 =HTTParty.get("https://openapi.etsy.com/v2/listings/#{@item.etsy_id.to_i}/?api_key=#{Rails.application.secrets.etsy_api_key}")
+		debugger
 		@images = response["results"]
 	end
 
