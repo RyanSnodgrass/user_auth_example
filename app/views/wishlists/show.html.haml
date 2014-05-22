@@ -18,11 +18,15 @@
 - total_price = 0
 - @wishlist.items.each do |item|
 	= link_to item.name, wishlist_item_path(@wishlist, item)
-	= item.price
+	/ = item.price
+	
 	- item_price = item.price
-	- total_price + item_price
+	%p this items variable item_price
+	= item_price
+	- total_price += item_price.to_i
 	%br
 %br
+%h5 Total Price of your Wishlist!
 = total_price
 
 %br
